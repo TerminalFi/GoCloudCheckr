@@ -20,6 +20,46 @@ const (
 	inventoryURL = "https://api.cloudcheckr.com/api/inventory.json/"
 )
 
+// Parameters for Requests
+type Parameters struct {
+	Date            string `url:"date,omitempty"`
+	AwsAccountIDs   string `url:"aws_account_ids,omitempty"`
+	InstanceIDS     string `url:"instance_ids,omitempty"`
+	ResourceTags    string `url:"resource_tags,omitempty"`
+	UseAccount      string `url:"use_account,omitempty"`
+	UseCCAccountID  string `url:"use_cc_account_id,omitempty"`
+	UseAWSAccountID string `url:"use_aws_account_id,omitempty"`
+	NextToken       string `url:"next_token,omitempty"`
+}
+
+func (p *Parameters) SetDate(date string) {
+	p.Date = date
+}
+
+func (p *Parameters) SetAwsAccountIDs(awsaccountids string) {
+	p.AwsAccountIDs = awsaccountids
+}
+
+func (p *Parameters) SetInstanceIDS(instanceids string) {
+	p.InstanceIDS = instanceids
+}
+
+func (p *Parameters) SetResourceTags(resourcetags string) {
+	p.ResourceTags = resourcetags
+}
+
+func (p *Parameters) SetUseAccount(useaccount string) {
+	p.UseAccount = useaccount
+}
+
+func (p *Parameters) SetUseCCAccountID(useccaccountid string) {
+	p.UseCCAccountID = useccaccountid
+}
+
+func (p *Parameters) SetUseAWSAccountID(useawsaccountid string) {
+	p.UseAWSAccountID = useawsaccountid
+}
+
 // Client represents CloudCheckr HTTP client
 type Client struct {
 	m *sync.Mutex
@@ -76,7 +116,7 @@ func (c *Client) NewRequest(method string, path string, params interface{}, body
 		return nil, err
 	}
 
-	return c.newRequest(method, u, params, body)
+	return c.baseRequest(method, u, params, body)
 }
 
 // NewRequest prepares new request to common CloudCheckr api.
@@ -86,10 +126,10 @@ func (c *Client) NewInventoryRequest(method string, path string, params interfac
 		return nil, err
 	}
 
-	return c.newRequest(method, u, params, body)
+	return c.baseRequest(method, u, params, body)
 }
 
-func (c *Client) newRequest(method string, u *url.URL, params interface{}, body io.Reader) (*http.Request, error) {
+func (c *Client) baseRequest(method string, u *url.URL, params interface{}, body io.Reader) (*http.Request, error) {
 	qs, err := query.Values(params)
 	if err != nil {
 		return nil, err
@@ -110,22 +150,6 @@ func (c *Client) newRequest(method string, u *url.URL, params interface{}, body 
 
 	return req, nil
 }
-
-// func (c *Client) do(ctx context.Context, req *http.Request) (*http.Response, error) {
-// 	if ctx != nil {
-// 		req = req.WithContext(ctx)
-// 	}
-
-// 	// c.PrintDebug(http2curl.GetCurlCommand(req))
-
-// 	if c.Debug {
-// 		if command, err := http2curl.GetCurlCommand(req); err == nil {
-// 			log.Printf("CloudCheckr client request: %s\n", command)
-// 		}
-// 	}
-
-// 	return c.Client.Do(req)
-// }
 
 // Do executes common (non-streaming) request.
 func (c *Client) Do(ctx context.Context, req *http.Request, destination interface{}) error {

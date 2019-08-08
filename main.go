@@ -13,7 +13,7 @@ func main() {
 
 	client := cloudcheckr.NewEnvClient(nil, "")
 	// client.SetDebug(true)
-	details, err := client.GetEC2Details(context.Background())
+	details, err := client.GetCustomerGateways(context.Background(), nil)
 
 	if err != nil {
 		log.Panic(err)
