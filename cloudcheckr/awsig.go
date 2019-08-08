@@ -30,7 +30,7 @@ type AWSIGResourceTags struct {
 func (c *Client) GetAWSInternetGateways(ctx context.Context, parameters *Parameters) (*AWSInternetGateways, error) {
 	var awsInternetGateways AWSInternetGateways
 
-	req, err := c.NewInventoryRequest("GET", getResourcesAWSInternetGateways, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesAWSInternetGateways, parameters, nil)
 	if err != nil {
 		return nil, err
 	}

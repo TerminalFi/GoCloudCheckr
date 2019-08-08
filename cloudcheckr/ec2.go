@@ -338,7 +338,7 @@ func (c *Client) GetEC2AddressSummary(ctx context.Context, parameters *Parameter
 func (c *Client) GetEC2Details(ctx context.Context, parameters *Parameters) (*Ec2Details, error) {
 	var ec2Details Ec2Details
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2Details, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2Details, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -354,7 +354,7 @@ func (c *Client) GetEC2Details(ctx context.Context, parameters *Parameters) (*Ec
 func (c *Client) GetEC2DetailsV2(ctx context.Context, parameters *Parameters) (*Ec2Details, error) {
 	var ec2Details Ec2Details
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2DetailsV2, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2DetailsV2, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -370,7 +370,7 @@ func (c *Client) GetEC2DetailsV2(ctx context.Context, parameters *Parameters) (*
 func (c *Client) GetEC2DetailsV3(ctx context.Context, parameters *Parameters) (*Ec2Details, error) {
 	var ec2Details Ec2Details
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2DetailsV3, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2DetailsV3, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -386,7 +386,7 @@ func (c *Client) GetEC2DetailsV3(ctx context.Context, parameters *Parameters) (*
 func (c *Client) GetEC2HostDetails(ctx context.Context, parameters *Parameters) (*Ec2HostDetails, error) {
 	var ec2HostDetails Ec2HostDetails
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2HostDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2HostDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -402,7 +402,7 @@ func (c *Client) GetEC2HostDetails(ctx context.Context, parameters *Parameters) 
 func (c *Client) GetEC2LoadBalancerDetails(ctx context.Context, parameters *Parameters) (*Ec2LoadBalancerDetails, error) {
 	var ec2LoadBalancerDetails Ec2LoadBalancerDetails
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2LoadBalancerDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2LoadBalancerDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -418,7 +418,7 @@ func (c *Client) GetEC2LoadBalancerDetails(ctx context.Context, parameters *Para
 func (c *Client) GetEC2LoadBalancerSummary(ctx context.Context, parameters *Parameters) (*Ec2LoadBalancerSummary, error) {
 	var ec2LoadBalancerSummary Ec2LoadBalancerSummary
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2LoadBalancerSummary, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2LoadBalancerSummary, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -434,7 +434,7 @@ func (c *Client) GetEC2LoadBalancerSummary(ctx context.Context, parameters *Para
 func (c *Client) GetEC2NetworkInterfaces(ctx context.Context, parameters *Parameters) (*Ec2NetworkInterfaces, error) {
 	var ec2NetworkInterfaces Ec2NetworkInterfaces
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2NetworkInterfaces, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2NetworkInterfaces, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -450,7 +450,7 @@ func (c *Client) GetEC2NetworkInterfaces(ctx context.Context, parameters *Parame
 func (c *Client) GetEC2SecurityGroupDetails(ctx context.Context, parameters *Parameters) (*Ec2SecurityGroupDetails, error) {
 	var ec2SecurityGroupDetails Ec2SecurityGroupDetails
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2SecurityGroupDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2SecurityGroupDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -466,7 +466,7 @@ func (c *Client) GetEC2SecurityGroupDetails(ctx context.Context, parameters *Par
 func (c *Client) GetEC2SecurityGroupSummary(ctx context.Context, parameters *Parameters) (*Ec2SecurityGroupSummary, error) {
 	var ec2SecurityGroupSummary Ec2SecurityGroupSummary
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2SecurityGroupSummary, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2SecurityGroupSummary, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -482,7 +482,7 @@ func (c *Client) GetEC2SecurityGroupSummary(ctx context.Context, parameters *Par
 func (c *Client) GetEC2Summary(ctx context.Context, parameters *Parameters) (*Ec2Summary, error) {
 	var ec2Summary Ec2Summary
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2Summary, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2Summary, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -498,7 +498,7 @@ func (c *Client) GetEC2Summary(ctx context.Context, parameters *Parameters) (*Ec
 func (c *Client) GetEC2VPCSecurityGroupDetails(ctx context.Context, parameters *Parameters) (*VPCSecurityGroups, error) {
 	var ec2VPCSecurityGroups VPCSecurityGroups
 
-	req, err := c.NewInventoryRequest("GET", getResourcesEC2VPCSecurityGroupDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesEC2VPCSecurityGroupDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}

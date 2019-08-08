@@ -83,10 +83,10 @@ type AmisByVisibility struct {
 // use_account (*optional/required) – return report for this account.
 // use_cc_account_id (*optional/required) – return report for this account.
 // use_aws_account_id  (*optional/required) – return report for this account.
-func (c *Client) GetAmiDetails(ctx context.Context) (*Amis, error) {
+func (c *Client) GetAmiDetails(ctx context.Context, parameters *Parameters) (*Amis, error) {
 	var amis Amis
 
-	req, err := c.NewInventoryRequest("GET", getResourcesAmiDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesAmiDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -104,10 +104,10 @@ func (c *Client) GetAmiDetails(ctx context.Context) (*Amis, error) {
 // use_account (*optional/required) – return report for this account.
 // use_cc_account_id (*optional/required) – return report for this account.
 // use_aws_account_id  (*optional/required) – return report for this account.
-func (c *Client) GetAmiSummary(ctx context.Context) (*AmiSummary, error) {
+func (c *Client) GetAmiSummary(ctx context.Context, parameters *Parameters) (*AmiSummary, error) {
 	var amisummary AmiSummary
 
-	req, err := c.NewInventoryRequest("GET", getResourcesAmiSummary, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesAmiSummary, parameters, nil)
 	if err != nil {
 		return nil, err
 	}

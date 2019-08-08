@@ -64,7 +64,7 @@ type StacksByRegion struct {
 func (c *Client) GetCloudFormationDetails(ctx context.Context, parameters *Parameters) (*CloudFormationDetails, error) {
 	var cloudFormationDetails CloudFormationDetails
 
-	req, err := c.NewInventoryRequest("GET", getResourcesCloudFormationDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesCloudFormationDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func (c *Client) GetCloudFormationDetails(ctx context.Context, parameters *Param
 func (c *Client) GetCloudFormationSummary(ctx context.Context, parameters *Parameters) (*CloudFormationSummary, error) {
 	var cloudFormationSummary CloudFormationSummary
 
-	req, err := c.NewInventoryRequest("GET", getResourcesCloudFormationSummary, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesCloudFormationSummary, parameters, nil)
 	if err != nil {
 		return nil, err
 	}

@@ -27,7 +27,7 @@ type VPCResourceTags struct {
 func (c *Client) GetCustomerGateways(ctx context.Context, parameters *Parameters) (*[]CustomerGateway, error) {
 	var customerGateway []CustomerGateway
 
-	req, err := c.NewInventoryRequest("GET", getResourcesCustomerGateways, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesCustomerGateways, parameters, nil)
 	if err != nil {
 		return nil, err
 	}

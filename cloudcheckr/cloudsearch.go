@@ -78,7 +78,7 @@ type DomainsByAccount struct {
 func (c *Client) GetCloudSearchDetails(ctx context.Context, parameters *Parameters) (*CloudSearchDetails, error) {
 	var cloudSearchDetails CloudSearchDetails
 
-	req, err := c.NewInventoryRequest("GET", getResourcesCloudSearchDetails, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesCloudSearchDetails, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +94,7 @@ func (c *Client) GetCloudSearchDetails(ctx context.Context, parameters *Paramete
 func (c *Client) GetCloudSearchSummary(ctx context.Context, parameters *Parameters) (*CloudSearchSummary, error) {
 	var cloudSearchSummary CloudSearchSummary
 
-	req, err := c.NewInventoryRequest("GET", getResourcesCloudSearchSummary, nil, nil)
+	req, err := c.NewInventoryRequest("GET", getResourcesCloudSearchSummary, parameters, nil)
 	if err != nil {
 		return nil, err
 	}
