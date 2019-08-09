@@ -12,8 +12,8 @@ import (
 func main() {
 
 	client := cloudcheckr.NewEnvClient(nil, "")
-	// client.SetDebug(true)
-	details, err := client.GetCustomerGateways(context.Background(), nil)
+	client.SetDebug(true)
+	details, err := client.GetRouteTables(context.Background(), nil)
 
 	if err != nil {
 		log.Panic(err)
@@ -21,21 +21,4 @@ func main() {
 		data, _ := json.MarshalIndent(&details, "", "  ")
 		fmt.Println(string(data))
 	}
-	// amis, err := client.GetAmiDetails(context.Background())
-
-	// if err != nil {
-	// 	log.Panic(err)
-	// } else {
-	// 	data, _ := json.MarshalIndent(&amis, "", "  ")
-	// 	log.Println(string(data))
-	// }
-
-	// amisummary, err := client.GetAmiSummary(context.Background())
-	// if err != nil {
-	// 	log.Panic(err)
-	// } else {
-	// 	data, _ := json.MarshalIndent(&amisummary, "", "  ")
-	// 	log.Println(string(data))
-	// }
-
 }

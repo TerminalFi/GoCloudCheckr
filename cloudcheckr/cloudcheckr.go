@@ -165,7 +165,6 @@ func (c *Client) Do(ctx context.Context, req *http.Request, destination interfac
 	}
 
 	resp, err := c.Client.Do(req)
-
 	if err != nil {
 		return err
 	}
