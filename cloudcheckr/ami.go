@@ -76,13 +76,6 @@ type AmisByVisibility struct {
 }
 
 // GetAmiDetails returns information from CloudCheckr get_resources_ami_details API
-// Need to implement the following parameter options
-// date (optional) – return report from this date. If date is not defined, the most recent report will be returned.
-// aws_account_ids (optional; multi-account view only) – return report for these accounts.
-// names (optional) – return statistics from specific AMIs (comma separated for multiple AMIs)
-// use_account (*optional/required) – return report for this account.
-// use_cc_account_id (*optional/required) – return report for this account.
-// use_aws_account_id  (*optional/required) – return report for this account.
 func (c *Client) GetAmiDetails(ctx context.Context, parameters *Parameters) (*Amis, error) {
 	var amis Amis
 
@@ -99,11 +92,6 @@ func (c *Client) GetAmiDetails(ctx context.Context, parameters *Parameters) (*Am
 }
 
 // GetAmiSummary returns information from CloudCheckr get_resources_ami_details API
-// Need to implement the following parameter options
-// date (optional) – return report from this date. If date is not defined, the most recent report will be returned.
-// use_account (*optional/required) – return report for this account.
-// use_cc_account_id (*optional/required) – return report for this account.
-// use_aws_account_id  (*optional/required) – return report for this account.
 func (c *Client) GetAmiSummary(ctx context.Context, parameters *Parameters) (*AmiSummary, error) {
 	var amisummary AmiSummary
 

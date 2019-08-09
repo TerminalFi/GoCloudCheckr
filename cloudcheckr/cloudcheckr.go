@@ -177,7 +177,6 @@ func (c *Client) Do(ctx context.Context, req *http.Request, destination interfac
 	c.Debug("Sending HTTP Request", req, nil)
 
 	resp, err := c.Client.Do(req)
-
 	if err != nil {
 		return err
 	}
