@@ -60,6 +60,10 @@ func (p *Parameters) SetUseAWSAccountID(useawsaccountid string) {
 	p.UseAWSAccountID = useawsaccountid
 }
 
+func (p *Parameters) SetNextToken(nexttoken string) {
+	p.NextToken = nexttoken
+}
+
 // Client represents CloudCheckr HTTP client
 type Client struct {
 	m *sync.Mutex
@@ -67,7 +71,7 @@ type Client struct {
 	Token        string
 	BaseURL      string
 	InventoryURL string
-	Debug        bool
+	Debugging    bool
 	Client       *http.Client
 }
 
@@ -95,18 +99,29 @@ func NewEnvClient(client *http.Client, envname string) *Client {
 	return NewClient(client, os.Getenv(envname))
 }
 
-func (c *Client) PrintDebug(message interface{}) {
-	if c.Debug == true {
-		fmt.Printf("[ DEBUG ] %v\n", message)
-	}
-}
-
 // SetDebug toggles the debug mode.
 func (c *Client) SetDebug(debug bool) {
 	c.m.Lock()
 	defer c.m.Unlock()
 
-	c.Debug = debug
+	c.Debugging = debug
+}
+
+// Debug
+func (c *Client) Debug(message string, req *http.Request, err error) {
+	if c.Debugging == true {
+		if req != nil {
+			if command, err := http2curl.GetCurlCommand(req); err == nil {
+				log.Printf("[ DEBUG ] %v\n", message)
+				log.Printf("[ DEBUG ] %v\n", command)
+			}
+		} else {
+			fmt.Printf("[ DEBUG ] %v\n", message)
+		}
+		if err != nil {
+			fmt.Printf("[ ERROR ] %v\n", err)
+		}
+	}
 }
 
 // NewRequest prepares new request to common CloudCheckr api.
@@ -141,6 +156,7 @@ func (c *Client) baseRequest(method string, u *url.URL, params interface{}, body
 
 	req, err := http.NewRequest(method, u.String(), body)
 	if err != nil {
+		c.Debug("Sending HTTP Request", req, nil)
 		return nil, err
 	}
 
@@ -158,11 +174,7 @@ func (c *Client) Do(ctx context.Context, req *http.Request, destination interfac
 		req = req.WithContext(ctx)
 	}
 
-	if c.Debug {
-		if command, err := http2curl.GetCurlCommand(req); err == nil {
-			log.Printf("CloudCheckr client request: %s\n", command)
-		}
-	}
+	c.Debug("Sending HTTP Request", req, nil)
 
 	resp, err := c.Client.Do(req)
 
