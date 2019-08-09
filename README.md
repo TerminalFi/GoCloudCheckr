@@ -4,7 +4,7 @@
 
 Golang API Library for CloudCheckr.
 
-```
+```go
 package main
 
 import (
